@@ -4,6 +4,8 @@ import java.io.IOException;
 
 public class SavePizzaException extends StockageException {
 
+	
+
 	/**
 	 * 
 	 */
