@@ -28,7 +28,7 @@ public Pizza ( String code,String nom, double prix){
 	this.prix=prix;
 }
 public Pizza ( String code,String nom, double prix, CategoriePizza cat){
-	id=reference++;
+	id=reference++; 
 	this.code=code;
 	this.nom=nom;
 	this.prix=prix;

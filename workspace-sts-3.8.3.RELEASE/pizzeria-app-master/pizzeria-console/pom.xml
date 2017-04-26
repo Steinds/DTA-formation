@@ -8,31 +8,47 @@
 		<artifactId>pizzeria-app-master</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
-	
+
 	<artifactId>pizzeria-console</artifactId>
-	
-	<name>pizzeria-console</name>
-	<url>http://maven.apache.org</url>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+
+	<name>Pizzeria - Console</name>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-jar-plugin</artifactId>
+					<configuration>
+						<archive>
+							<manifest>
+								<mainClass>fr.pizzeria.console.PizzeriaAdminConsoleApp</mainClass>
+							</manifest>
+						</archive>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
 	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-		
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>dta</groupId>
-			<artifactId>pizzeria-domain</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
 		<dependency>
 			<groupId>com.github.lalyos</groupId>
 			<artifactId>jfiglet</artifactId>
-			<version>0.0.8</version>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>dta</groupId>
@@ -46,8 +62,21 @@
 		</dependency>
 		<dependency>
 			<groupId>dta</groupId>
+			<artifactId>pizzeria-domain</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>dta</groupId>
 			<artifactId>pizzeria-dao-memoire</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>dta</groupId>
+			<artifactId>pizzeria-dao-jdbc</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
+
+	
+
 </project>

@@ -1,0 +1,7 @@
+fr\pizzeria\console\PizzeriaAdminConsoleApp.class
+org\pizzeria\console\ihm\OptionMenu.class
+org\pizzeria\console\ihm\SupprimerOptionMenu.class
+org\pizzeria\console\ihm\Menu.class
+org\pizzeria\console\ihm\MettreAJourOptionMenu.class
+org\pizzeria\console\ihm\NouvellePizzaOptionMenu.class
+org\pizzeria\console\ihm\ListerPizzasOptionMenu.class

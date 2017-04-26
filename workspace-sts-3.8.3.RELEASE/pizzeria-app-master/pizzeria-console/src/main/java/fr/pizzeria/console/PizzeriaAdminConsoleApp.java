@@ -1,6 +1,7 @@
 package fr.pizzeria.console;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
 import org.pizzeria.console.ihm.ListerPizzasOptionMenu;
@@ -35,9 +36,20 @@ import com.github.lalyos.jfiglet.FigletFont;
 
 public class PizzeriaAdminConsoleApp {
 
-	public static void main(String[] args) throws IOException {
-		DaoFactory daoFactory = new DaoFichierFactory();
-		IPizzaDao dao = daoFactory.getPizzaDao();
+	public static void main(String[] args) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException  {
+		
+		ResourceBundle bundle = ResourceBundle.getBundle("application");
+		String value = bundle.getString("dao.impl");	
+		Class<?> maClasse = Class.forName(value);
+		DaoFactory factory = (DaoFactory) maClasse.newInstance();
+		
+		
+		
+//		DaoFactory daoFactory = new DaoFichierFactory();
+		IPizzaDao dao = factory.getPizzaDao();
+		dao.findAllPizzas().forEach(p->p.toString());
+		
+		
 		
 		
 		//IPizzaDao dao = new PizzaDaoImpl();
@@ -67,7 +79,7 @@ public class PizzeriaAdminConsoleApp {
 		
 		
 		Menu menu = new Menu();
-		String asciiArt = FigletFont.convertOneLine("Welcome");
+		String asciiArt = FigletFont.convertOneLine("PizzaYOLO");
 	    System.out.println(asciiArt);
 		menu.setTitre("****** Pizzeria Administration *****");		
 		menu.ajouterAction(new ListerPizzasOptionMenu(dao, "Liste des Pizzas"));

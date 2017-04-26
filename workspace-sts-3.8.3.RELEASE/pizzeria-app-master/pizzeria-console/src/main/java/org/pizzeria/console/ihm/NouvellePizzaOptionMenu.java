@@ -37,7 +37,7 @@ public class NouvellePizzaOptionMenu extends OptionMenu {
 		System.out.println("Veuillez saisir le type de Pizza: VIANDE POISSON SANS_VIANDE");
 		String cat = choiceUser.next();
 		List<Pizza> listPizza= pizzas.findAllPizzas();
-		choiceUser.close();
+		//choiceUser.close();
 		 
 		for( int i=0,j=0;i<listPizza.size();i++){
 			if(listPizza.get(i)!=null){ 

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -84,10 +85,36 @@ public List<Pizza> findAllPizzas() {
 		       
 	}
 	public boolean updatePizza(String codePizza, Pizza pizza) throws UpdatePizzaException{
+		File f = new File(dataDir +"/"+codePizza+".txt");
+	       try {
+	    	   FileWriter printer= new FileWriter(f);
+	    	  
+	    	   printer.write(pizza.getNom()+";"+Double.toString(pizza.getPrix())+";"+pizza.getCat());
+	    	   
+	    	   printer.close();
+	    	   return false;
+		} catch (IOException e) {
+			throw new UpdatePizzaException(e);
+		}
 		
-		return false;
 	}
 	 public boolean deletePizza(String codePizza) throws DeletePizzaException{
+		List<Pizza> list = findAllPizzas();
+		Pizza p=new Pizza(codePizza, null, 0, null);
+		for (int j=0;j<list.size();j++){
+			
+			if(list.get(j).getCode().equals(codePizza)){
+				 p= list.get(j);
+			}
+		}
+		
+		Path path = Paths.get(dataDir +"/"+p.getCode()+".txt");
+		try {
+			Files.delete(path);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return false;
 	}

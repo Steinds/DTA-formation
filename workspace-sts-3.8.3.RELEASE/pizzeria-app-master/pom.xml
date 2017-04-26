@@ -10,25 +10,22 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 		<junit.version>4.12</junit.version>
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jdbcURL>jdbc:mysql://localhost:3306/pizzeria</jdbcURL>
 		<!-- ici se trouveront les propriétés à ajouter -->
 	</properties>
 
 	<build>
+	    
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
 		<pluginManagement>
 			<plugins>
 
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-jar-plugin</artifactId>
-					<version>3.0.2</version>
-					<configuration>
-						<archive>
-							<manifest>
-								<mainClass>fr.pizzeria.console.PizzeriaAdminConsoleApp</mainClass>
-							</manifest>
-						</archive>
-					</configuration>
-				</plugin>
+
 
 				<plugin>
 					<artifactId>maven-compiler-plugin</artifactId>
@@ -38,31 +35,18 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 					</configuration>
 				</plugin>
 
-				
+
 			</plugins>
 		</pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				
+
 			</plugin>
-			
-			<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-shade-plugin</artifactId>
-					<version>3.0.0</version>
-					<executions>
-						<execution>
-							<phase>package</phase>
-							<goals>
-								<goal>shade</goal>
-							</goals>
-							  
-						</execution>
-					</executions>
-				</plugin>
-			
+
+
+
 		</plugins>
 	</build>
 
@@ -81,7 +65,11 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 				<scope>test</scope>
 
 			</dependency>
-
+			<dependency>
+				<groupId>com.github.lalyos</groupId>
+				<artifactId>jfiglet</artifactId>
+				<version>0.0.8</version>
+			</dependency>
 		</dependencies>
 
 	</dependencyManagement>
@@ -96,8 +84,12 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 		</dependency>
 
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.41</version>
+		</dependency>
 
-		
 	</dependencies>
 	<modules>
 		<module>pizzeria-console</module>
@@ -105,5 +97,50 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 		<module>pizzeria-dao-memoire</module>
 		<module>pizzeria-dao-fichier</module>
 		<module>pizzeria-domain</module>
+		<module>pizzeria-dao-jdbc</module>
 	</modules>
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<dao>org.pizzeria.dao.memoire.DaoMemoryFactory</dao>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>mysql</groupId>
+					<artifactId>mysql-connector-java</artifactId>
+					<version>5.1.41</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>jdbc</id>			
+			<properties>
+				<dao>org.pizzeria.dao.jdbc.DaoJdbcFactory</dao>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>mysql</groupId>
+					<artifactId>mysql-connector-java</artifactId>
+					<version>5.1.41</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<dao>org.pizzeria.dao.fichier.DaoFichierFactory</dao>				
+			</properties>										
+			<dependencies>
+				<dependency>
+					<groupId>dta</groupId>
+					<artifactId>pizzeria-dao-fichier</artifactId>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
 </project>
