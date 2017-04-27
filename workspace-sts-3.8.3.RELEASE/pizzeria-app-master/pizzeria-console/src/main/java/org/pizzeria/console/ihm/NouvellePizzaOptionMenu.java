@@ -17,11 +17,13 @@ public class NouvellePizzaOptionMenu extends OptionMenu {
 		// TODO Auto-generated constructor stub
 	}
 
+	
 	@Override
 	public boolean execute() {
-		// TODO Auto-generated method stub
 		
 		
+		
+		@SuppressWarnings("resource")
 		Scanner choiceUser = new Scanner(System.in);
 		//int a = choiceUser.nextInt();// choiceUser
 		String code, nom;

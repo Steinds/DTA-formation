@@ -40,6 +40,7 @@ public class PizzeriaAdminConsoleApp {
 		
 		ResourceBundle bundle = ResourceBundle.getBundle("application");
 		String value = bundle.getString("dao.impl");	
+		
 		Class<?> maClasse = Class.forName(value);
 		DaoFactory factory = (DaoFactory) maClasse.newInstance();
 		

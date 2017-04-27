@@ -120,6 +120,9 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 			<id>jdbc</id>			
 			<properties>
 				<dao>org.pizzeria.dao.jdbc.DaoJdbcFactory</dao>
+				<jdbcURL>jdbc:mysql://localhost:3306/pizzeria?useSSL=false</jdbcURL>
+				<login>root</login>
+				<pass></pass>
 			</properties>
 			<dependencies>
 				<dependency>

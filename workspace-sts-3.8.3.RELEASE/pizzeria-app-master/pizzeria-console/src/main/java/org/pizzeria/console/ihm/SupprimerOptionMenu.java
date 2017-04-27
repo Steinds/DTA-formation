@@ -20,6 +20,7 @@ public class SupprimerOptionMenu extends OptionMenu {
 	public boolean execute() {
 		// TODO Auto-generated method stub
 	//	List<Pizza> listPizza= pizzas.findAllPizzas();
+		@SuppressWarnings("resource")
 		Scanner choiceUser = new Scanner(System.in);		
 		System.out.println("Veuillez choisir la pizza � supprimer(code)");
 		String code =choiceUser.next();
