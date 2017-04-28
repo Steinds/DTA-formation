@@ -1,5 +1,7 @@
 package org.pizzeria.domain;
 
+import java.util.Set;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,19 +10,35 @@ public class Pizza {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name = "CODE", unique = true)
+	@Column(name = "CODE", length =3 )
 	private String code;
-	@Column(name = "NOM")
+	@Column(name = "NOM", length =50 )
 	private String nom;
 	@Column(name = "PRIX")
 	private double prix;
 	@Enumerated(EnumType.STRING)
-	@Column(name = "CATEGORIE")
+	@Column(name = "CATEGORIE", length =50 )
 	private CategoriePizza cat;
 	public static int reference;
+	@Column(name = "URL_IMAGE", length =250 )
+	private String url_image=null;
+	
+	@OneToMany
+	private Set<Commande> commandes;
+	
 
 	public Pizza() {
 
+	}
+
+	public Pizza(int id, String code, String nom, double prix, CategoriePizza cat, String url_image) {
+		super();
+		this.id = id;
+		this.code = code;
+		this.nom = nom;
+		this.prix = prix;
+		this.cat = cat;
+		this.url_image = url_image;
 	}
 
 	@Deprecated
@@ -47,7 +65,13 @@ public class Pizza {
 		this.setCat(cat);
 
 	}
+	public String getUrl_image() {
+		return url_image;
+	}
 
+	public void setUrl_image(String url_image) {
+		this.url_image = url_image;
+	}
 	public int getId() {
 		return id;
 	}

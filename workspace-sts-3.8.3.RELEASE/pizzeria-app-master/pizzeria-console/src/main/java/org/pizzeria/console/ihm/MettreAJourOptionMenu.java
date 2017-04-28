@@ -10,7 +10,7 @@ import org.pizzeria.domain.Pizza;
 //import fr.pizzeria.exception.UpdatePizzaException;
 
 
-public class MettreAJourOptionMenu extends OptionMenu{
+public class MettreAJourOptionMenu extends OptionMenu<IPizzaDao>{
 
 	public MettreAJourOptionMenu(IPizzaDao pizzas,String libelle) {
 		super(pizzas, libelle);
@@ -38,7 +38,7 @@ public class MettreAJourOptionMenu extends OptionMenu{
 		
 		Pizza upPizza= new Pizza( code, nom, prix,CategoriePizza.valueOf(cat));
 		try {
-			pizzas.updatePizza(num,upPizza);
+			dao.updatePizza(num,upPizza);
 		} catch (UpdatePizzaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

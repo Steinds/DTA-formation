@@ -3,6 +3,9 @@ package fr.pizzeria.console;
 import java.io.IOException;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import java.util.logging.Level;
+
+import javax.persistence.Persistence;
 
 import org.pizzeria.console.ihm.ListerPizzasOptionMenu;
 import org.pizzeria.console.ihm.Menu;
@@ -37,6 +40,8 @@ import com.github.lalyos.jfiglet.FigletFont;
 public class PizzeriaAdminConsoleApp {
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException  {
+		java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
+		Persistence.generateSchema("pizzeria-unit", null);
 		
 		ResourceBundle bundle = ResourceBundle.getBundle("application");
 		String value = bundle.getString("dao.impl");	

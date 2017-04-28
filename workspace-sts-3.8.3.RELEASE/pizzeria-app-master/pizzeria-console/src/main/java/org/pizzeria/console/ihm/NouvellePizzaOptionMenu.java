@@ -10,7 +10,7 @@ import org.pizzeria.domain.Pizza;
 
 //import fr.pizzeria.exception.SavePizzaException;
 
-public class NouvellePizzaOptionMenu extends OptionMenu {
+public class NouvellePizzaOptionMenu extends OptionMenu<IPizzaDao> {
 
 	public NouvellePizzaOptionMenu(IPizzaDao pizzas ,String libelle) {
 		super(pizzas , libelle);
@@ -38,7 +38,7 @@ public class NouvellePizzaOptionMenu extends OptionMenu {
 		prix = choiceUser.nextDouble();
 		System.out.println("Veuillez saisir le type de Pizza: VIANDE POISSON SANS_VIANDE");
 		String cat = choiceUser.next();
-		List<Pizza> listPizza= pizzas.findAllPizzas();
+		List<Pizza> listPizza= dao.findAllPizzas();
 		//choiceUser.close();
 		 
 		for( int i=0,j=0;i<listPizza.size();i++){
@@ -48,7 +48,7 @@ public class NouvellePizzaOptionMenu extends OptionMenu {
 		}}
 		boolean out;
 		try {
-			out = pizzas.saveNewPizza(new Pizza(code,nom,prix,CategoriePizza.valueOf(cat)));
+			out = dao.saveNewPizza(new Pizza(code,nom,prix,CategoriePizza.valueOf(cat)));
 			if (out)
 				System.out.println("done");
 			return out;

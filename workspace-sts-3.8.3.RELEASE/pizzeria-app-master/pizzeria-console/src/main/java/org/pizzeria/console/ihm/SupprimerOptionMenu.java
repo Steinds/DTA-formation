@@ -10,7 +10,7 @@ import org.pizzeria.dao.api.exception.DeletePizzaException;
 //import fr.pizzeria.exception.DeletePizzaException;
 
 
-public class SupprimerOptionMenu extends OptionMenu {
+public class SupprimerOptionMenu extends OptionMenu<IPizzaDao> {
 
 	public SupprimerOptionMenu(IPizzaDao pizzas,String libelle) {
 		super(pizzas, libelle);
@@ -26,7 +26,7 @@ public class SupprimerOptionMenu extends OptionMenu {
 		String code =choiceUser.next();
 		//choiceUser.close();
 		try {
-			pizzas.deletePizza(code);
+			dao.deletePizza(code);
 		} catch (DeletePizzaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

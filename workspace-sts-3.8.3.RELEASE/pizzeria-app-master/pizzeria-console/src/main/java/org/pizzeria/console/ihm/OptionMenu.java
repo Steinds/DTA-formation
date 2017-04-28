@@ -1,19 +1,19 @@
 package org.pizzeria.console.ihm;
 
-import org.pizzeria.dao.api.IPizzaDao;
 
 
-public abstract class OptionMenu{
+
+public abstract class OptionMenu<T>{
  
- IPizzaDao pizzas;
+ protected T dao;
  private String libelle;
  
 
 
-public OptionMenu(IPizzaDao pizzas,String libelle) {
+public OptionMenu(T dao,String libelle) {
 	super();
 	this.libelle = libelle;
-	this.pizzas = pizzas;
+	this.dao = dao;
 }
 
 public abstract boolean execute() ;
