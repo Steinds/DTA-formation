@@ -22,7 +22,7 @@ public class SupprimerOptionMenu extends OptionMenu {
 	//	List<Pizza> listPizza= pizzas.findAllPizzas();
 		@SuppressWarnings("resource")
 		Scanner choiceUser = new Scanner(System.in);		
-		System.out.println("Veuillez choisir la pizza � supprimer(code)");
+		System.out.println("Veuillez choisir la pizza à supprimer(code)");
 		String code =choiceUser.next();
 		//choiceUser.close();
 		try {

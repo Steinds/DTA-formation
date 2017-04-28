@@ -24,7 +24,7 @@ public class MettreAJourOptionMenu extends OptionMenu{
 		Scanner choiceUser = new Scanner(System.in);
 		
 		//	listerPizza(listePizza);
-		System.out.println("Veuillez choisir la pizza � modifier(CODE)");
+		System.out.println("Veuillez choisir la pizza à modifier(CODE)");
 		String num = choiceUser.next();
 		
 		System.out.println("Veuillez saisir le code");

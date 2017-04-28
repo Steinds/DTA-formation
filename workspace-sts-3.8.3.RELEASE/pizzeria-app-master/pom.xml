@@ -98,6 +98,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 		<module>pizzeria-dao-fichier</module>
 		<module>pizzeria-domain</module>
 		<module>pizzeria-dao-jdbc</module>
+		<module>pizzeria-dao-jpa</module>
 	</modules>
 	<profiles>
 		<profile>
@@ -115,6 +116,12 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 					<version>5.1.41</version>
 				</dependency>
 			</dependencies>
+		</profile>
+		<profile>
+			<id>jpa</id>			
+			<properties>
+				<dao>org.pizzeria.dao.jpa.DaoJpaFactory</dao>
+			</properties>			
 		</profile>
 		<profile>
 			<id>jdbc</id>			
